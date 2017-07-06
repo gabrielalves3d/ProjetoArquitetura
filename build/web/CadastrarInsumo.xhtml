@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Gerenciador de merenda</title>
+
+    </h:head>
+    <h:body>
+        <ui:include src='menu.xhtml'/>     
+        <h:form id="formInsumo">
+            <p:messages/>
+            <p:fieldset legend="Cadastro de Insumo" style="width: 50%">
+                <p:panelGrid columns="2">
+
+                    <h:outputText value="Nome*:"/>
+                    <p:inputText  value="#{builderInsumo.nome}" />
+
+                    <h:outputText value="Unidade de medida*:"/>
+                    <p:inputText  value="#{builderInsumo.tipoUnidade}" />
+
+                    <h:outputText value="Quantidade*:"/>
+                    <p:inputText  value="#{builderInsumo.quantidade}" />
+                </p:panelGrid> 
+                <p:commandButton value="Cadastrar" action="#{insumoController.inserir(builderInsumo.buildInsumo())}"
+                                 />
+            </p:fieldset>
+
+        </h:form>
+
+    </h:body>
+</html>

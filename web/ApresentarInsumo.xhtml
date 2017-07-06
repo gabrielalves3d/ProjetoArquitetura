@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gerenciador de merenda</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+        <h:form id="Form">
+            
+            <p:dataTable id="tabela" value="#{insumoController.recuperarTodos()}"
+                         var="insumo" selectionMode="single" selection="#{insumoController.selected}" rowKey="#{insumo.codInsumo}">
+                <f:facet name="header">
+                    <h:outputText value="Insumos cadastrados"/>
+                </f:facet>
+                <p:column headerText="codigo">
+                    <h:outputText value="#{insumo.codInsumo}"/>
+                </p:column>
+                
+                <p:column headerText="nome">
+                    <h:outputText value="#{insumo.nome}"/>
+                </p:column>
+                <p:column headerText="tipoUnidade">
+                    <h:outputText value="#{insumo.tipoUnidade}"/>
+                </p:column>
+                <p:column headerText="quantidade">
+                    <h:outputText value="#{insumo.quantidade}"/>
+                </p:column>
+                
+                <f:facet name="footer">
+                    <p:commandButton value="Alterar" action="AlterarInsumo.xhtml"/>
+                    <p:commandButton value="Remover"  update=":Form:tabela" action="#{insumoController.excluir(insumoController.selected)}"/>
+                    <p:commandButton value="Atualizar" oncomplete=":Form:tabela"/>  
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
